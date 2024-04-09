@@ -1,0 +1,62 @@
+<h1>自分の題名</h1>
+<h3>Flower詳細</h3>
+<div class="flower">
+  <p><%= @flower.hana %></p>
+  <p><%= @flower.created_at %></p>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(@flower) %>
+        <%= link_to flower_like_path(@flower), method: :delete do %>
+          <p>いいねを取り消す</p><%= @flower.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to flower_likes_path(@flower), method: :post do %>
+          <p>いいね</p><%= @flower.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @flower.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_flower_path(@flower.id) %>
+</div>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@flower, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @flower.liked_users.each do |user| %>
+
+    <li><%= user.email %></li>
+
+<% end %>
+
+<%= link_to "Flower一覧に戻る", flower_path %>
+
+
+
+<%= link_to "編集する", edit_flower_path(@flower.id) %>
+
+<% @flower.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+<% end %>
+
+
+
+<%= image_tag @user.image_url, size: "250x200" if @user.image? %>

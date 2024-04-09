@@ -1,0 +1,89 @@
+</div>
+	<div class="cp_contents">
+		<h1>OKURIBANA</h1>
+		</div>
+	</div>
+</div>
+
+<h1>写真投稿ページ</h1>
+<h3>新規投稿ページ</h3>
+<%= form_for @flower do |f| %>
+
+
+    <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+            <%= tag.label class: 'form-check-label' do %>
+                  
+                      
+                <% end %>
+
+            </div>
+        <% end %>
+    </div>
+
+    <div class="field">
+        <%= f.label :hana  %>
+        <%= f.text_area :hana, :size => "30x2" %>
+     </div>
+  
+    <div class="field">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+    </div>
+
+     <div class="field">
+        <%= f.label :photo %>
+        <%= f.text_field :photo, :size => 30 %>
+     </div>
+
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name, :size => 30 %>
+     </div>
+  
+   
+
+ 
+ 
+  <h5>総合評価</h5>
+   <div class="post_form">
+    <%= f.radio_button :overall, 5 ,id: 'star1'%>
+    <label for="star1"><span class="text">最高</span>★</label>
+
+    <%= f.radio_button :overall, 4 ,id: 'star2'%>
+    <label for="star2"><span class="text">良い</span>★</label>
+
+    <%= f.radio_button :overall, 3 ,id: 'star3'%>
+    <label for="star3"><span class="text">普通</span>★</label>
+
+    <%= f.radio_button :overall, 2 ,id: 'star4'%>
+    <label for="star4"><span class="text">悪い</span>★</label>
+
+    <%= f.radio_button :overall, 1 ,id: 'star5'%>
+    <label for="star5"><span class="text">最悪</span>★</label>
+ </div>
+
+
+  <%= f.submit "投稿する" %>
+  <% end %>
+  
+  <%= link_to "一覧に戻る", flowers_path %>
+
+
+  <div class="cp_cont">
+ 
+  
+	<div class="cp_offcm01">
+		<input type="checkbox" id="cp_toggle01">
+		<label for="cp_toggle01"><span></span></label>
+		<div class="cp_menu">
+		<ul>
+        <li><%= link_to 'HOME🏠', root_path%></li>
+		<li><%= link_to 'POST📸', new_flower_path%></li>
+		<li><a href="#">menu2</a></li>
+		<li><a href="#">menu3</a></li>
+		</ul>
+		</div>
+	

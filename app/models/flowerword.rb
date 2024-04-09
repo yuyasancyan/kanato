@@ -1,0 +1,2 @@
+class Flowerword < ApplicationRecord
+end

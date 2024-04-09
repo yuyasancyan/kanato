@@ -1,0 +1,3 @@
+class FlowerTagRelation < ApplicationRecord
+
+end
